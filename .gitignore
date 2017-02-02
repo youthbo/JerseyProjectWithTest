@@ -1,0 +1,14 @@
+
+*.class
+
+*.prefs
+
+.classpath
+
+*.MF
+
+*.properties
+
+*.xml
+
+.project

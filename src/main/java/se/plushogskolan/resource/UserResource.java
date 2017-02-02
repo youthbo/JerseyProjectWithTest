@@ -23,9 +23,6 @@ import javax.ws.rs.core.UriInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 import se.plushogskolan.jersey.model.JerseyUser;
 import se.plushogskolan.jersey.model.RequestBean;
 import se.plushogskolan.jersey.model.UserFinder;
@@ -69,14 +66,14 @@ public final class UserResource {
    	 * }
 	 */
 	@POST
-	public Response addUser(JerseyUser user) {
+	public Response addUser(JerseyUser jerseyUser) {
 
-		String teamname = user.getTeamname();
+		String teamname = jerseyUser.getTeamname();
 		Team team = teamService.findByName(teamname);
 		if (team == null) {
 			team = new Team(teamname);
 		}
-		User newUser = new User(user.getFirstname(),user.getLastname(),user.getUsername(),team);
+		User newUser = new User(jerseyUser.getFirstname(),jerseyUser.getLastname(),jerseyUser.getUsername(),jerseyUser.getPassword(),team);
 		newUser.generateUsernumber();
 		newUser = userService.createUser(newUser);
 		URI location = uriInfo.getAbsolutePathBuilder().path(UserResource.class, "getUserById").build(newUser.getId());
@@ -117,6 +114,7 @@ public final class UserResource {
 	 */
 	@GET
 	@Path("p")
+	@Secured
 	public Response getAllUsers(@QueryParam("page") @DefaultValue("0") int page,
 			@QueryParam("size") @DefaultValue("10") int size) {
 
@@ -133,6 +131,7 @@ public final class UserResource {
 	 */
 	@GET
 	@Path("{id}")
+	@Secured
 	public Response getUserById(@PathParam("id") @DefaultValue("1") Long id) {
 
 		User user = userService.getUser(id);

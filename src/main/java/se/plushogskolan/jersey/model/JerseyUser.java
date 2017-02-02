@@ -4,6 +4,7 @@ public class JerseyUser {
 	private String firstname;
 	private String lastname;
 	private String username;
+	private String password;
 	private String teamname;
 	private String workItemId;
 	private String status;
@@ -30,5 +31,8 @@ public class JerseyUser {
 	
 	public String getStatus() {
 		return status;
+	}
+	public String getPassword() {
+		return password;
 	}
 }

@@ -3,10 +3,6 @@ package se.plushogskolan.jersey.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-
-import se.plushogskolan.model.Team;
 import se.plushogskolan.model.User;
 
 public class UserFinder {
