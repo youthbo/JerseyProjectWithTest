@@ -42,7 +42,11 @@
 			<artifactId>DatabaseModule</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		 
+		<dependency>
+         <groupId>io.jsonwebtoken</groupId>
+         <artifactId>jjwt</artifactId>
+         <version>0.6.0</version>
+        </dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
